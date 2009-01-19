@@ -1,0 +1,47 @@
+#!/usr/bin/perl -w 
+
+use strict;
+
+opendir(APPS,'/Applications') || terminate('Could not find /Applications');
+opendir(PREF,'~/Library/PreferencePanes') ;
+opendir(WIDGETS,'~/Library/Widgets') ;
+
+
+my @apps =
+ 		map  { s/\.app$//; make_short($_) }
+		grep { !/^\./ && /\.app$/ && -d '/Applications/'.$_ } readdir(APPS),
+		map  { s/\.prefPanes$//; make_short($_) }
+		grep { !/^\./ && /\.prefPanes$/ && -d '~/Library/PreferencePanes/'.$_ } readdir(PREF),
+		map  { s/\.wdgt$//; make_short($_) }
+		grep { !/^\./ && /\.wdgt$/ && -d '~/Library/Widgets/'.$_ } readdir(WIDGETS);
+
+
+
+my $data='-F apps='.join(' -F apps=',@apps);
+my $res=`curl -s -H \"Expect:\" $data http://osx.iusethis.com/profile/send`;
+
+if ($res =~ m/^\d+$/) {
+		print "Profile uploaded...\n";
+	system('open','http://osx.iusethis.com/profile/view/'.$res.'?match=1');
+} else
+{
+	terminate('Unable to send profile to server '.$res);
+}
+
+sub terminate {
+	system('open','http://osx.iusethis.com/profile/error?message='.simple_escape(shift));
+}
+
+sub make_short {
+    my ($name)=@_;
+    $name =~ s/[^\w\@\-]//g;
+    return lc $name;
+}
+
+sub simple_escape {
+	my $text=shift;
+	#FIXME: this sucks
+	$text =~ s/\&/\&amp;/g;
+	$text =~ s/\s/\%20/g;
+	return $text;
+}
