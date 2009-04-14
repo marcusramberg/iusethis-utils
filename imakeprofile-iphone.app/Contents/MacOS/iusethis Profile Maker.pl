@@ -23,7 +23,9 @@ terminate( "Could not find any backups  in ~/Library/Application Support/MobileS
 use XML::TreePP;
 my $tpp = XML::TreePP->new();
 my $doc=$tpp->parsefile($backupdir.$newest.'/Manifest.plist');
-my $blob=$doc->{plist}->{dict}->{data}->[2] || die('Could not parse manifest. Invalid XML data?');
+my $blob=$doc->{plist}->{dict}->{data}->[2] ||
+         $doc->{plist}->{dict}->{data}->[1]
+ || terminate('Could not parse manifest: '.$backupdir.$newest.'/Manifest.plist. Invalid XML data?');
 my $plist_data=$reader->open_string(decode_base64($blob))->data;
 
 my @apps;
