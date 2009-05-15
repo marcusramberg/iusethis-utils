@@ -33,6 +33,20 @@
 	return nil;
 }
 
+- (QSObject *)openIusethisWithTag:(QSObject *)dObject{
+    NSString *tag=[dObject stringValue];
+    NSWorkspace *ws=[NSWorkspace sharedWorkspace];
+    [ws openURL: [NSURL URLWithString:  [@"http://osx.iusethis.com/tag/" stringByAppendingString: [[tag stringByReplacing:@" " with:@"+"] stringByAddingPercentEscapesUsingEncoding: NSUTF8StringEncoding ]]]];
+	return nil;
+}
+
+- (QSObject *)searchIusethisFor:(QSObject *)dObject{
+    NSString *query=[dObject stringValue];
+    NSWorkspace *ws=[NSWorkspace sharedWorkspace];
+    [ws openURL: [NSURL URLWithString:  [@"http://osx.iusethis.com/search?q=" stringByAppendingString: [ query stringByAddingPercentEscapesUsingEncoding: NSUTF8StringEncoding]]]];
+	return nil;
+}
+
      
 - (NSString *)applicationShortName:(NSString *)name {
     if (!name)

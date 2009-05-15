@@ -15,7 +15,7 @@
 	<key>CFBundlePackageType</key>
 	<string>BNDL</string>
 	<key>CFBundleVersion</key>
-	<string>3B</string>
+	<string>42</string>
 	<key>NSPrincipalClass</key>
 	<string>iusethis</string>
 	<key>QSActions</key>
@@ -101,6 +101,48 @@
 			<string>iusethis.icns</string>
 			<key>name</key>
 			<string>Show iusethis Profile</string>
+			<key>validatesObjects</key>
+			<false/>
+		</dict>
+		<key>searchForAppsAction</key>
+		<dict>
+			<key>actionClass</key>
+			<string>iusethisAction</string>
+			<key>actionSelector</key>
+			<string>searchIusethisFor:</string>
+			<key>description</key>
+			<string>search for apps on iusethis</string>
+			<key>directTypes</key>
+			<array>
+				<string>NSStringPboardType</string>
+			</array>
+			<key>enabled</key>
+			<true/>
+			<key>icon</key>
+			<string>iusethis.icns</string>
+			<key>name</key>
+			<string>Search For Apps</string>
+			<key>validatesObjects</key>
+			<false/>
+		</dict>
+		<key>showAppsTaggedWithAction</key>
+		<dict>
+			<key>actionClass</key>
+			<string>iusethisAction</string>
+			<key>actionSelector</key>
+			<string>openIusethisWithTag:</string>
+			<key>description</key>
+			<string>show apps on iusethis with this tag</string>
+			<key>directTypes</key>
+			<array>
+				<string>NSStringPboardType</string>
+			</array>
+			<key>enabled</key>
+			<true/>
+			<key>icon</key>
+			<string>iusethis.icns</string>
+			<key>name</key>
+			<string>Apps Tagged With</string>
 			<key>validatesObjects</key>
 			<false/>
 		</dict>

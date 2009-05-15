@@ -20,6 +20,8 @@
 - (QSObject *)downloadLatestForApplication:(QSObject *)dObject;
 - (NSString *)applicationShortName: (NSString *)name;
 - (QSObject *)showIutProfileForApplication:(QSObject *)dObject;
+- (QSObject *)openIusethisWithTag:(QSObject *)dObject;
+- (QSObject *)searchIusethisFor:(QSObject *)dObject;
 
 @end
 
