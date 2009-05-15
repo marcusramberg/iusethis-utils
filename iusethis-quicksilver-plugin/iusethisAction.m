@@ -47,6 +47,9 @@
 	return nil;
 }
 
+
+
+// Thanks to metaquark (http://metaquark.de/) for this snippet. 
      
 - (NSString *)applicationShortName:(NSString *)name {
     if (!name)
